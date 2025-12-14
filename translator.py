@@ -10,7 +10,8 @@ class StringCache():
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS cache (
                 input TEXT PRIMARY KEY,
-                output TEXT
+                output TEXT,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
         self.conn.commit()
@@ -22,6 +23,10 @@ class StringCache():
 
     def set(self, input_text, output_text):
         self.cursor.execute('REPLACE INTO cache (input, output) VALUES (?, ?)', (input_text, output_text))
+        self.conn.commit()
+
+    def purge(self, period_days: int = 30):
+        self.cursor.execute('DELETE FROM cache where updated_at < datetime("now", "-{period_days} days")')
         self.conn.commit()
 
 
@@ -39,6 +44,7 @@ class ChatGPT():
         self.input_tokens = 0
         self.output_tokens = 0
         self.cache = StringCache()
+        self.cache.purge()
 
     def cost(self):
         MODEL_PRICING = {

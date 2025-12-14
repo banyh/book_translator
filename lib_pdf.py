@@ -60,11 +60,16 @@ class PdfBook():
             for block, new_text in zip(text_blocks, chunk.split('</block>')):
                 if 'lines' not in block:
                     continue
-                size = int(block['lines'][0]['spans'][0]['size'])
+                start_size = size = int(block['lines'][0]['spans'][0]['size'])
                 new_text = new_text.replace('<block>', '').replace('\n', '').strip()
                 page.draw_rect(block['bbox'], color=WHITE, fill=WHITE, overlay=True)
-                tw.fill_textbox(block['bbox'], new_text, font=self.font, fontsize=size)
-                tw.write_text(page)
+                while start_size > size - 5:
+                    try:
+                        tw.fill_textbox(block['bbox'], new_text, font=self.font, fontsize=size)
+                        break
+                    except:
+                        size -= 1
+            tw.write_text(page)
 
     def save(self, filename: str):
         self.book.subset_fonts(verbose=True)
