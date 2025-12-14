@@ -4,5 +4,8 @@
 
 ### Getting Start
 
-1. 修改`settings.py`中的`openai_apikey`
-2. 執行`python book_translator.py book.pdf book.epub`
+1. `pip install -r requirements.txt`
+   Installing dependencies
+2. Set your OpenAI API key in `openai_apikey` in `settings.py`
+3. Run `python book_translator.py {filename}`
+    epub and pdf files are supported now

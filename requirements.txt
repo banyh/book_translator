@@ -1,0 +1,10 @@
+# (lib_epub.py) reading and writing epub files
+ebooklib
+bs4
+
+# (lib_pdf.py) reading and writing pdf files
+requests
+pymupdf
+
+# (translator.py) translation services
+openai
