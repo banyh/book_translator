@@ -9,27 +9,3 @@ system_prompt = """你是一位專業的翻譯員，精通多種語言之間的�
 如果原文用<block></block>標籤包裹，請在翻譯後的文本中也使用相同的標籤包裹。"""
 
 user_prompt = """將下列文字翻譯成繁體中文，翻譯時應盡可能使用台灣習慣詞語。"""
-
-# Whether to output bilingual text or just translated text, set to "True" or "False"
-bilingual_output = False
-
-# Language code of the output epub file, e.g. "en", "zh-cn", "ja"
-langcode = 'zh-tw'
-
-# Translation begins from the specified start page number and is
-# exclusively available for PDF files.
-startpage = 1
-
-# Translation will continue until the specified page number in
-# a PDF file. This feature supports PDF files exclusively.
-# If the input is equal to -1, the translation will proceed until
-# the end of the file.
-endpage = -1
-
-# Foreign language transliteration list, a xlsx file.
-# For example in the sample from English to simplified Chinese
-transliteration_list = 'transliteration-list-example.xlsx'
-
-# Whether case matching is enabled by transliteration
-# list replacement, set to "True" or "False"
-case_matching = True
